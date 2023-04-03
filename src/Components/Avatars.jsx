@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AUTH_LOGOUT } from "../Redux/Auth/auth.types";
+import { CARTITEMS } from "../Redux/Products/product.type";
 
 const Avatars = ({ name }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Avatars = ({ name }) => {
     localStorage.removeItem("user")
     localStorage.removeItem("token")
     dispatch({ type: AUTH_LOGOUT });
- 
+     dispatch({type:CARTITEMS,payload:0}) 
 
   };
 
