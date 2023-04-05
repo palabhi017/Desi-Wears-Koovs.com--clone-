@@ -132,7 +132,7 @@ function AdminPanel() {
   
  const getAllProducts = async()=>{
  try {
-  let res = await axios.get(`http://localhost:8080/product`)
+  let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/product`)
   let data = res.data;
   setData(data)
  } catch (error) {
@@ -144,7 +144,7 @@ function AdminPanel() {
 
   const handleDelete = async(id) => {
     
-    await axios.delete(`http://localhost:8080/product/delete/${id}`)
+    await axios.delete(`https://eager-handkerchief-bass.cyclic.app/product/delete/${id}`)
     getAllProducts()
     toast({
       position: "top",
@@ -158,7 +158,7 @@ function AdminPanel() {
   const handleEdit = async(id,item) => {
     try {
       console.log("edit")
-    await axios.patch(`http://localhost:8080/product/update/${id}`,item)
+    await axios.patch(`https://eager-handkerchief-bass.cyclic.app/product/update/${id}`,item)
     getAllProducts()
     toast({
       position: "top",

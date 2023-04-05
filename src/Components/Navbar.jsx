@@ -61,7 +61,7 @@ import SearchCard from "./SearchCard"
 
     const handleSearch = async()=>{
       try {
-        let res = await fetch(`http://localhost:8080/product?search=${searchInput}`)
+        let res = await fetch(`https://eager-handkerchief-bass.cyclic.app/product?search=${searchInput}`)
         let data = await res.json()
         setSearchData(data)
         if(searchInput===""){

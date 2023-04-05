@@ -2,7 +2,7 @@ import axios from "axios";
 export const getAuth= async(UserData)=>{
 
     try {
-        let res = await axios.post(`http://localhost:8080/user/login`,UserData)
+        let res = await axios.post(`https://eager-handkerchief-bass.cyclic.app/user/login`,UserData)
       
         return res.data;
         

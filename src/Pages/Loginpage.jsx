@@ -32,7 +32,7 @@ const dispatch = useDispatch()
    setLoad(true)
     try {
       setLoad(false)
-        let res = await axios.post(`http://localhost:8080/user/login`,{email,password})
+        let res = await axios.post(`https://eager-handkerchief-bass.cyclic.app/user/login`,{email,password})
       
         if(res.data.token){
           

@@ -10,7 +10,7 @@ const [orders,setOrders] = useState([])
 
   const getcartdata = async(id)=>{
     try {
-      let res = await axios.get(`http://localhost:8080/order/${id}`)
+      let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/order/${id}`)
      setOrders(res.data)  
    
     } catch (error) {

@@ -42,7 +42,7 @@ const dispatch = useDispatch()
   const getProduct = async () => {
  
     try {
-        let res = await axios.get(`http://localhost:8080/product/${id}`)
+        let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/product/${id}`)
         
         setData(res.data)
     } catch (error) {
@@ -62,7 +62,7 @@ const addtocart = async () => {
   userID:_id
  }
   try {
-     await axios.post(`http://localhost:8080/cart/add`,item)
+     await axios.post(`https://eager-handkerchief-bass.cyclic.app/cart/add`,item)
       
       getcartdata(_id)
   } catch (error) {
@@ -72,7 +72,7 @@ const addtocart = async () => {
 
 const getcartdata = async(id)=>{
   try {
-    let res = await axios.get(`http://localhost:8080/cart/${id}`)
+    let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/cart/${id}`)
   
   
    dispatch({type:CARTITEMS,payload:res.data.length})

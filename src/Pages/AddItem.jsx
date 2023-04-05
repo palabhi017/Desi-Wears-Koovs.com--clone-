@@ -19,7 +19,7 @@ const navigate = useNavigate()
 
       const handleAdd = async(item)=>{
         try {
-          await axios.post(`http://localhost:8080/product/add`,item)
+          await axios.post(`https://eager-handkerchief-bass.cyclic.app/product/add`,item)
         
           toast({
             position: "top",

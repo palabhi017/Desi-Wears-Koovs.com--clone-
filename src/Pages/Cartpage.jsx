@@ -56,7 +56,7 @@ const handleClick = () => {
 
 const getcartdata = async(id)=>{
 try {
-  let res = await axios.get(`http://localhost:8080/cart/${id}`)
+  let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/cart/${id}`)
  setCartdata(res.data)  
  handletotal()
  dispatch({type:CARTITEMS,payload:res.data.length})
@@ -67,7 +67,7 @@ try {
 
 const deletecartdata = async(id)=>{
   try {
-     await axios.delete(`http://localhost:8080/cart/delete/${id}`)
+     await axios.delete(`https://eager-handkerchief-bass.cyclic.app/cart/delete/${id}`)
    getcartdata(userId)  
   } catch (error) {
     console.log(error)
@@ -76,7 +76,7 @@ const deletecartdata = async(id)=>{
 
 const updatequant = async(orderId,num)=>{
 try {
-  await axios.patch(`http://localhost:8080/cart/update/${orderId}`,{quantity:num})
+  await axios.patch(`https://eager-handkerchief-bass.cyclic.app/cart/update/${orderId}`,{quantity:num})
   getcartdata(userId)
   console.log(orderId,num)
 } catch (error) {
