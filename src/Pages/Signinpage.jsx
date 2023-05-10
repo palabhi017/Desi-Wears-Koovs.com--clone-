@@ -34,7 +34,7 @@ const rag = useSelector((state)=> state.Auth.rag)
     const user = {
       name: first_name+" "+last_name,
       email,
-      password,
+      password, 
      
     };
     let res = await axios.post(`https://eager-handkerchief-bass.cyclic.app/user/ragister`,user)
