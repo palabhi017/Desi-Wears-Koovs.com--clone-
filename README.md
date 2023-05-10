@@ -37,17 +37,17 @@
 - Expandable and Shirnkable side Navbar  <br/>
 
 ## Homepage :
-<img src="https://github.com/palabhi017/rctc4eva/blob/master/src/styles/Screenshot%20(129).png?raw=true" width="90%"> </img>
+<img src="https://github.com/palabhi017/unit6profront/blob/master/src/assests/Home.png?raw=true" width="90%"> </img>
 
-## Login Page :
-![Login](https://user-images.githubusercontent.com/90616584/230283787-3241dcf6-8d0b-4aed-89e2-bc748bcea971.jpg)
+## Admin Page :
+![Login](https://github.com/palabhi017/unit6profront/blob/master/src/assests/admin.png)
 
 
 ## Product Page : 
-![Product page](https://user-images.githubusercontent.com/90616584/230283342-226c4460-2e7b-4488-9670-fc5f0b0f1316.jpg)
+![Product page](https://github.com/palabhi017/unit6profront/blob/master/src/assests/Productpage.png)
 
 ## Single Product Page : 
-![Single](https://user-images.githubusercontent.com/90616584/230283615-d5a8c29c-1d20-487e-ae1f-95f0eac3cc45.jpg)
+![Single](https://github.com/palabhi017/unit6profront/blob/master/src/assests/payment.png)
 
 
 
