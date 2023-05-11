@@ -141,7 +141,7 @@ import SearchCard from "./SearchCard"
                             </Box>
                             <Box className="down_arrow">
                                 <Menu className="down_arrow3">
-                                    <MenuButton  as={Button} rightIcon={<ChevronDownIcon />} colorScheme='white' color="black" fontSize='15px' border="none" >
+                                    <MenuButton  as={Button} rightIcon={<ChevronDownIcon />} colorscheme='white' color="black" fontSize='15px' border="none" >
                                         English
                                     </MenuButton >
                                     <MenuList >
@@ -169,7 +169,7 @@ import SearchCard from "./SearchCard"
             <div className="popup">
                     <div className="contpop">
                         <div className="firstpop">
-                            <a href=""><h5>Clothing</h5></a> 
+                            <h5>Clothing</h5>
                             <a href=""><p>New in</p></a> 
                             <a href=""><p>View all</p></a> 
                             <a href=""><p>T-Shirts</p></a> 
@@ -204,7 +204,7 @@ import SearchCard from "./SearchCard"
                             <p>Slides</p>
                         </div>
                        <div className="thirdpopup">
-                        <div classname="thirdpop" >
+                        <div className="thirdpop" >
                             <Image  className="im3" src="https://cdn.shopify.com/s/files/1/0677/1464/6315/files/Screenshot_2022-11-10_at_5.37.53_PM.png?v=1668083230&width=533" alt="men-image11" />
                         </div>
                        </div>
@@ -341,7 +341,7 @@ import SearchCard from "./SearchCard"
       <div id="responsive_22">
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <div style={{ marginLeft: "30px" }}>
-            <HiMenu ref={btnRef} colorScheme="teal" onClick={onOpen} size="1.6em"/>
+            <HiMenu ref={btnRef} colorscheme="teal" onClick={onOpen} size="1.6em"/>
             <Drawer
               isOpen={isOpen}
               placement="left"
@@ -367,8 +367,8 @@ import SearchCard from "./SearchCard"
                   <a href="/"><p className='myaccount123'>My Account</p></a>                    
                 </Box>
                 <DrawerHeader mt={12} display="flex" flexDirection="column" width="40%">
-                  <Button as={Link} to={"/login"} bgColor="black" color="white" colorScheme = "none">Login</Button>
-                  <Button as={Link} to={"/register"} variant="outline"  border =" 1px solid black"  colorScheme = "none">Register</Button>
+                  <Button as={Link} to={"/login"} bgColor="black" color="white" colorscheme = "none">Login</Button>
+                  <Button as={Link} to={"/register"} variant="outline"  border =" 1px solid black"  colorscheme = "none">Register</Button>
                 </DrawerHeader>
               </DrawerContent>
             </Drawer>
