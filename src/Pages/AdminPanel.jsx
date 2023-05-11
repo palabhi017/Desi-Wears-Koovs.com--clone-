@@ -2,138 +2,96 @@ import {
   Button,
   Center,
   Flex,
-  FormControl,
-  FormLabel,
+  
   Heading,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+ 
   Table,
   TableContainer,
   Tbody,
   Th,
   Thead,
   Tr,
-  useDisclosure,
+ 
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ProductTable from "../Components/Table";
-import ConfirmDeleteModal from "../Components/ConfirmDelete";
+import  Chart  from "chart.js/auto";
+import { CategoryScale } from "chart.js/auto";
 import axios from "axios"
-import { useFormik } from "formik";
-import { Link } from "react-router-dom";
-const products = [
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/e/p/m/m-t-25-2nd-bukkl-original-imaghnnzwdhya9mr.jpeg?q=70",
-    title: "Men Printed Round Neck Black T-Shirt",
-    price: 443,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "puma",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/l/d/i/xl-mk-tsrt-03-makemode-original-imagjugmxfaxhmez.jpeg?q=70",
-    title: "Men Striped Round Neck Pink T-Shirt",
-    price: 269,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "puma",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/x/v/e/l-all-rbcropn-sky-one-nb-nicky-boy-original-imagkq6hgg5gqsep.jpeg?q=70",
-    title: "Men Printed Round Neck Multicolor T-Shirt",
-    price: 229,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "puma",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/y/t/k/xxs-t653-cgblwh-eyebogler-original-imaghyjv7kppbqxb.jpeg?q=70",
-    title: "Men Color Block Round Neck Grey T-Shirt",
-    price: 199,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "puma",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/v/5/k/m-st-boxhead-black-smartees-original-imaggegtpgz5dhjj.jpeg?q=70",
-    title: "Men Printed Round Neck Black T-Shirt",
-    price: 179,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "puma",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/kl6wx3k0/t-shirt/y/n/i/s-bbt-try-this-original-imagydarhsryeahn.jpeg?q=70",
-    title: "Men Color Block Round Neck White, Black T-Shirt",
-    price: 199,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "nike",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/u/l/t/xxl-bwtblnvmrpolo-pl5-blive-original-imagm7f6pgva4z3r.jpeg?q=70",
-    title: "Men Striped Polo Neck Multicolor T-Shirt",
-    price: 299,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "nike",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/k572gsw0/t-shirt/p/z/7/xl-ntc-t-205-206-full-new-trends-collection-original-imafnxzgbrnrwjx7.jpeg?q=70",
-    title: "Pack of 2 Men Solid Round Neck White, Black T-Shirt",
-    price: 500,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "nike",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/y/0/5/s-bmrhenful-z14-blive-original-imaghau6cw8g3gjy.jpeg?q=70",
-    title: "Men Solid Henley Neck Maroon T-Shirt",
-    price: 279,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "nike",
-  },
-  {
-    image:
-      "https://rukminim1.flixcart.com/image/612/612/l4zxn680/t-shirt/a/7/c/m-st-colorleaf-navy-smartees-original-imagfs4paqzgkteh.jpeg?q=70",
-    title: "Men Printed Round Neck Dark Blue T-Shirt",
-    price: 179,
-    gender: "Men",
-    category: "T-shirt",
-    brand: "nike",
-  },
-];
 
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { PRODUCTS_PAGE } from "../Redux/Products/product.type";
+import PieChart from "../Components/PieChart";
+
+Chart.register(CategoryScale)
 function AdminPanel() {
   const [data, setData] = useState([]);
+  const [sa, setSa] = useState(0);
   const [dataState, setDataState] = useState(true);
-  const deleteModal = useDisclosure();
- const toast = useToast()
- const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef(null)
-
+  const toast = useToast()
+ 
+  const [chartData,setChartData] = useState()
   
+  const activePage = useSelector((state) => state.productReducer.currPage);
+  const totalPages = Math.ceil(data?.length/10)
+const dispatch = useDispatch()
+
+
+
+let countcate=(items)=>{
+  let s=0,ts=0,ku=0,kur=0,du=0,bl=0,saa=0,pl=0
+  for(let i=0;i<items.length;i++){
+  if(items[i].category==="saree"){
+     saa++
+    }else if(items[i].category==="T-shirt"){
+      ts++
+    }
+    else if(items[i].category==="shirt"){
+      s++
+    }else if(items[i].category==="kurtas"){
+      ku++
+    }else if(items[i].category==="kurtis"){
+      kur++
+    }else if(items[i].category==="blazer"){
+      bl++
+    }else if(items[i].category==="dupatta"){
+      du++
+    }else if(items[i].category==="palazzos"){
+      pl++
+    }
+
+  }
+  let obj={
+    labels: ["T-shirt","shirt","kurtas","blazer","saree","kurtis","dupatta","palazzos"],
+    datasets:[
+      {
+        label:"category",
+        data: [ts,s,ku,bl,saa,kur,du,pl],
+        backgroundColor: [
+          "#2d7ff9",
+          "#ffa67e",
+          "#f5b51b",
+          "#d0f0fd",
+          "#50AF95",
+          "#f3ba2f",
+          "#2a71d0",
+          "#e929ba"
+        ],
+        borderColor:"black",
+        borderWidth:2 
+      }
+    ]
+  }
+setChartData(obj)
+}
  const getAllProducts = async()=>{
  try {
   let res = await axios.get(`https://eager-handkerchief-bass.cyclic.app/product`)
   let data = res.data;
+ countcate(data)
+ 
   setData(data)
  } catch (error) {
   console.log(error)
@@ -176,10 +134,11 @@ function AdminPanel() {
 
   useEffect(() => {
     getAllProducts();
-  }, [dataState]);
+  }, []);
 
   return (
     <>
+   {chartData && <PieChart chartData={chartData}/> }
     <Center
       pb={"60px"}
       px={"30px"}
@@ -206,9 +165,12 @@ function AdminPanel() {
           </Thead>
           <Tbody>
             {data
-              ? data.map((e) => {
+              ? data.filter((_,index)=> {return (
+                index >= 10* (activePage-1) && 
+                index < 10 * activePage
+              )}).map((e) => {
                   return (
-                    <ProductTable  key={e.id}
+                    <ProductTable  key={e._id}
                     objProp={e}
                     funcProp={handleDelete}
                     funcedit={handleEdit}/>
@@ -218,6 +180,13 @@ function AdminPanel() {
           </Tbody>
         </Table>
       </TableContainer>
+      <Flex w="80px" m="auto"  mt="30px" gap="3px" mb="10px">
+        <Button isDisabled={activePage===1} bgColor={"teal.500"} color="white" fontSize={"20px"} fontWeight={"bold"} onClick={()=> dispatch({type:PRODUCTS_PAGE,payload:activePage-1})}>
+          {"<"}
+        </Button>
+        <Button color="teal.500">{activePage}</Button>
+        <Button isDisabled={activePage===totalPages} bgColor={"teal.500"} color="white" fontSize={"20px"} fontWeight={"bold"} onClick={()=> dispatch({type:PRODUCTS_PAGE,payload:activePage+1})}>{">"}</Button>
+      </Flex>
 </Center>
 
 </>
